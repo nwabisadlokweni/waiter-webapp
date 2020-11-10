@@ -1,0 +1,70 @@
+.container {
+    color: black;
+    background-color: beige;
+	border: 3px solid black;
+	margin: auto;
+	padding: 0.5em;
+	font-style: normal;
+	font-size: large;
+	font-weight: bold;
+	display: flex;
+  }
+
+.button {
+	margin: 1em;
+	padding: 1em;
+	
+}
+
+h1{
+ font-family: "Lucida Console", Courier, monospace;
+  }
+  
+  .flash {
+	text-indent: 50px;
+	text-align: justify;
+	letter-spacing: 3px;
+	color : red;
+}
+/* p {
+	text-indent: 50px;
+	text-align: justify;
+	letter-spacing: 3px;
+	color: thistle;
+  }
+ 
+
+.confirm {
+	text-indent: 50px;
+	text-align: justify;
+	letter-spacing: 3px;
+	color: green;
+}
+
+.clear {
+	text-indent: 50px;
+	text-align: justify;
+	letter-spacing: 3px;
+	color: orange;
+}
+
+.reg {
+	background-color: yellow;
+	border: 0.1em solid;
+	border-radius: 0.4em;
+	padding: 0.5em;
+	margin: 0.5em;
+	width: 7em;
+	text-align: center;
+	font-weight: bold;
+	float: left;
+
+} */
+
+@media(min-width: 1024px) {
+	.container {
+		width: 50%;
+		margin: auto;
+		padding: 1em;
+	}
+}

@@ -1,0 +1,43 @@
+<div class="row"> 
+    <p>Enter your name and select your working days</p>
+
+<div class="message"></div>
+
+{{#if message}}
+    <div class="">{{message}}</div>
+    {{else}}
+    <div class="">
+        <p class='flash'> {{messages.error}}</p>
+    </div>
+    {{/if}}
+
+    <div class="textbox">
+        {{!-- <form action=""> --}}
+            <strong>Name: </strong>
+            <input type="text" name="name" class="name" placeholder="enter your name">
+        {{!-- </form> --}}
+    </div>
+<br>
+    <div class="checkbox">
+        <form action="/action_page.php">
+            <input type="checkbox" id="day1" name="day1" value="Monday"> Monday<br>
+            <input type="checkbox" id="day2" name="day2" value="Tuesday"> Tuesday<br>
+            <input type="checkbox" id="day3" name="day3" value="Wednesday"> Wednesday<br>
+            <input type="checkbox" id="day4" name="day4" value="Thursday"> Thursday<br>
+            <input type="checkbox" id="day5" name="day5" value="Friday"> Friday<br>
+            <input type="checkbox" id="day6" name="day6" value="Saturday"> Saturday<br>
+            <input type="checkbox" id="day7" name="day7" value="Sunday"> Sunday<br>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+</div>
+
+<script>
+    setTimeout(function () {
+        document.querySelector(".flash").innerHTML = ""
+        //document.querySelector(".confirm").innerHTML = "";
+      //document.querySelector(".clear").innerHTML = ""
+    }, 3000);
+</script>
