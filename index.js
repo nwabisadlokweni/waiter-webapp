@@ -42,16 +42,38 @@ app.get('/', function (req, res) {
     res.render('index')
 })
 
-app.get('/waiters/:username', function (req, res) {
-
+app.get('/waiters/:username', async function (req, res) {
+    const username1 = req.params.username;
+   
+    res.render('waiters', {
+         username1
+    })
 })
 
-app.post('/waiters/:username', function (req, res) {
- res.render('waiters')
+//adding the names to the db
+app.post('/waiters/:username', async function (req, res) {
+    // const username = await waiter.getNames();
+    const username1 = req.params.username;
+ console.log(username)
+    res.redirect(`waiters/${username1}`, {username1})
 })
 
-app.get('/days', function(req, res){
-    
+app.get('/waiters', async function (req, res) {
+    const username = req.params.username;
+
+    res.render('waiters', {
+         username
+    })
+})
+
+app.get('/days', async function (req, res) {
+    res.render('administrator')
+})
+
+app.get('/reset', async function (req, res) {
+    // req.flash('resetSucceded', 'You have successfully cleared your registrations');
+    // await registration.reset()
+    res.render('administrator')
 })
 
 const PORT = process.env.PORT || 2030;

@@ -1,9 +1,17 @@
-<div class="row"> 
-    <p>Enter your name and select your working days</p>
+<div class="row">
 
-<div class="message"></div>
+    <div class="header">
+        <div class="bhelekazi">
+            <h1><strong> Bhelekazi </strong></h1>
+            <img src="/images/images.png" alt="coffee">
+        </div>
+    </div>
 
-{{#if message}}
+    <h2>Select your working days</h2>
+
+    <div class="message"></div>
+
+    {{#if message}}
     <div class="">{{message}}</div>
     {{else}}
     <div class="">
@@ -11,33 +19,26 @@
     </div>
     {{/if}}
 
-    <div class="textbox">
-        {{!-- <form action=""> --}}
-            <strong>Name: </strong>
-            <input type="text" name="name" class="name" placeholder="enter your name">
-        {{!-- </form> --}}
-    </div>
-<br>
-    <div class="checkbox">
-        <form action="/action_page.php">
-            <input type="checkbox" id="day1" name="day1" value="Monday"> Monday<br>
-            <input type="checkbox" id="day2" name="day2" value="Tuesday"> Tuesday<br>
-            <input type="checkbox" id="day3" name="day3" value="Wednesday"> Wednesday<br>
-            <input type="checkbox" id="day4" name="day4" value="Thursday"> Thursday<br>
-            <input type="checkbox" id="day5" name="day5" value="Friday"> Friday<br>
-            <input type="checkbox" id="day6" name="day6" value="Saturday"> Saturday<br>
-            <input type="checkbox" id="day7" name="day7" value="Sunday"> Sunday<br>
-            <br>
-            <input type="submit" value="Submit">
-        </form>
-    </div>
+    <form action="/waiters/{{username}}" method="POST">
+        <input type="checkbox" id="day1" name="day1" value="Monday"> Monday
+        <input type="checkbox" id="day2" name="day2" value="Tuesday"> Tuesday
+        <input type="checkbox" id="day3" name="day3" value="Wednesday"> Wednesday
+        <input type="checkbox" id="day4" name="day4" value="Thursday"> Thursday
+        <input type="checkbox" id="day5" name="day5" value="Friday"> Friday
+        <input type="checkbox" id="day6" name="day6" value="Saturday"> Saturday
+        <input type="checkbox" id="day7" name="day7" value="Sunday"> Sunday
+        <br>
+        <button class="submit" type="submit">Submit</button>
+        {{!-- <input type="submit" value="Submit"> --}}
+    </form>
 
+   
 </div>
 
 <script>
     setTimeout(function () {
         document.querySelector(".flash").innerHTML = ""
         //document.querySelector(".confirm").innerHTML = "";
-      //document.querySelector(".clear").innerHTML = ""
+        //document.querySelector(".clear").innerHTML = ""
     }, 3000);
 </script>

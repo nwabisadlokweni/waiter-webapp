@@ -1,65 +1,65 @@
 .container {
     color: black;
-    background-color: beige;
-	border: 3px solid black;
+	background-color: cornsilk;
 	margin: auto;
-	padding: 0.5em;
-	font-style: normal;
-	font-size: large;
-	font-weight: bold;
-	display: flex;
+	width: 90%;
+	text-align: center;
+	position: relative;
+	border: 3px solid rgb(110, 13, 110);
+  }
+
+  .image{
+	width: 30%;
+	text-align: right;
   }
 
 .button {
 	margin: 1em;
 	padding: 1em;
-	
 }
 
 h1{
- font-family: "Lucida Console", Courier, monospace;
+	background-color: white;
+	 font-family: "Lucida Console", Courier, monospace;
+	 position: absolute;
+	 top: 4%;
+	 left: 50%;
+	 transform: translate(-50%, -50%);
+ }
+
+.header {
+	padding: 1em;
+	text-align: center;
+	font-size: 15px;
   }
   
-  .flash {
+.flash {
 	text-indent: 50px;
 	text-align: justify;
 	letter-spacing: 3px;
 	color : red;
 }
-/* p {
-	text-indent: 50px;
-	text-align: justify;
-	letter-spacing: 3px;
-	color: thistle;
-  }
- 
 
-.confirm {
-	text-indent: 50px;
-	text-align: justify;
-	letter-spacing: 3px;
-	color: green;
+table {
+	width: 100%;
 }
 
-.clear {
-	text-indent: 50px;
-	text-align: justify;
-	letter-spacing: 3px;
+table, td, th {
+border: 1px solid black;
+border-collapse: collapse;
+}
+
+.red{
+	color: red;
+}
+
+.orange{
 	color: orange;
 }
 
-.reg {
-	background-color: yellow;
-	border: 0.1em solid;
-	border-radius: 0.4em;
-	padding: 0.5em;
-	margin: 0.5em;
-	width: 7em;
-	text-align: center;
-	font-weight: bold;
-	float: left;
-
-} */
+.green{
+	color: green;
+}
 
 @media(min-width: 1024px) {
 	.container {
