@@ -14,31 +14,44 @@
   <h3 class="orange">still need more</h3>
 
 <hr>
+<div class="clear">
+        <p class="clear"></p>{{messages.resetSucceded}}</p>
+    </div>
 
+<br>
+ <div class="resetSucceded"></div>
+
+ 
+<form action="/days" method="GET"></form>
   <table>
-    <caption>WEEKDAYS</caption>
+    <caption>Shifts Tables</caption>
+     
     <tr>
-      <th> Monday </th>
-      <th> Tuesday </th>
-      <th> Wednesday </th>
-      <th> Thursday </th>
-      <th> Friday </th>
-      <th> Saturday </th>
-      <th> Sunday </th>
+     {{#each display}}
+      <th>
+        {{this.selectedDay}}
+      </th>
+   {{/each}}
     </tr>
 
     <tr>
-      <td>  </td>
-      <td>  </td>
-      <td>  </td>
-      <td>  </td>
-      <td>  </td>
-      <td>  </td>
-      <td>  </td>
+      {{#each selectedWaiter}}
+      <td> 
+        {{this.names}}
+         </td>
+    {{/each}}
     </tr>
   </table>
 
  <br>
+
+  <div>
+        <a href="/">
+            <button type="submit" class="back">back</button>
+        </a>
+    </div>
+
+<br>
 
     <div>
         <form action="/reset" method="GET">
@@ -48,3 +61,11 @@
     </div>
 
 </div>
+
+<script>
+    setTimeout(function () {
+        //document.querySelector(".flash").innerHTML = ""
+        //document.querySelector(".confirm").innerHTML = "";
+        document.querySelector(".clear").innerHTML = ""
+    }, 3000);
+</script>

@@ -40,6 +40,13 @@ h1{
 	color : red;
 }
 
+.clear {
+	text-indent: 50px;
+	text-align: justify;
+	letter-spacing: 3px;
+	color: orange;
+}
+
 table {
 	width: 100%;
 }

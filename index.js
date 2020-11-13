@@ -46,7 +46,7 @@ app.get('/waiters/:username', async function (req, res) {
     const username1 = req.params.username;
    
     res.render('waiters', {
-         username1
+        username: username1
     })
 })
 
@@ -54,25 +54,35 @@ app.get('/waiters/:username', async function (req, res) {
 app.post('/waiters/:username', async function (req, res) {
     // const username = await waiter.getNames();
     const username1 = req.params.username;
- console.log(username)
-    res.redirect(`waiters/${username1}`, {username1})
+    const week = req.body.day;
+    await waiter.addNames(username1)
+    const both = await waiter.getTheShifts(week, username1 )
+    //console.log(week)
+    res.render('waiters', {both})
 })
 
 app.get('/waiters', async function (req, res) {
-    const username = req.params.username;
+    const username1 = req.params.username;
 
     res.render('waiters', {
-         username
+         username: username1
     })
 })
 
 app.get('/days', async function (req, res) {
-    res.render('administrator')
+    const selectedDay = await waiter.getDays();
+    const selectedWaiter = await waiter.getNames()
+    const display = await waiter.getTheShifts()
+    res.render('administrator',{
+        selectedDay,
+        selectedWaiter,
+        display
+    })
 })
 
 app.get('/reset', async function (req, res) {
-    // req.flash('resetSucceded', 'You have successfully cleared your registrations');
-    // await registration.reset()
+    req.flash('resetSucceded', `You have successfully cleared your shift's table`);
+    await waiter.reset()
     res.render('administrator')
 })
 

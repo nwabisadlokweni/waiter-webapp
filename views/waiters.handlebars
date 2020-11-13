@@ -20,18 +20,23 @@
     {{/if}}
 
     <form action="/waiters/{{username}}" method="POST">
-        <input type="checkbox" id="day1" name="day1" value="Monday"> Monday
-        <input type="checkbox" id="day2" name="day2" value="Tuesday"> Tuesday
-        <input type="checkbox" id="day3" name="day3" value="Wednesday"> Wednesday
-        <input type="checkbox" id="day4" name="day4" value="Thursday"> Thursday
-        <input type="checkbox" id="day5" name="day5" value="Friday"> Friday
-        <input type="checkbox" id="day6" name="day6" value="Saturday"> Saturday
-        <input type="checkbox" id="day7" name="day7" value="Sunday"> Sunday
+        <input type="checkbox" id="day1" class="check" name="day" value="Monday"> Monday
+        <input type="checkbox" id="day2" class="check" name="day" value="Tuesday"> Tuesday
+        <input type="checkbox" id="day3" class="check" name="day" value="Wednesday"> Wednesday
+        <input type="checkbox" id="day4" class="check" name="day" value="Thursday"> Thursday
+        <input type="checkbox" id="day5" class="check" name="day" value="Friday"> Friday
+        <input type="checkbox" id="day6" class="check" name="day" value="Saturday"> Saturday
+        <input type="checkbox" id="day7" class="check" name="day" value="Sunday"> Sunday
         <br>
         <button class="submit" type="submit">Submit</button>
         {{!-- <input type="submit" value="Submit"> --}}
     </form>
-
+    <br>
+<div>
+        <a href="/">
+            <button type="submit" class="back">back</button>
+        </a>
+    </div>
    
 </div>
 
