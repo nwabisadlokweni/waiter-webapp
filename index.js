@@ -39,21 +39,24 @@ app.use(session({
 app.use(flash());
 
 app.get('/', function (req, res) {
+    
     res.render('index')
 })
 
 app.get('/waiters/:username', async function (req, res) {
-    const username1 = req.params.username;
-   
+    const username1 = _.capitalize(req.params.username);
+//    const names = await waiter.addNames()
+
     res.render('waiters', {
         username: username1
+        //  message: names 
     })
 })
 
 //adding the names to the db
 app.post('/waiters/:username', async function (req, res) {
     // const username = await waiter.getNames();
-    const username1 = req.params.username;
+    const username1 =  _.capitalize(req.params.username);
     const week = req.body.day;
     await waiter.addNames(username1)
     const both = await waiter.getTheShifts(week, username1 )
@@ -62,7 +65,7 @@ app.post('/waiters/:username', async function (req, res) {
 })
 
 app.get('/waiters', async function (req, res) {
-    const username1 = req.params.username;
+    const username1 =  _.capitalize(req.params.username);
 
     res.render('waiters', {
          username: username1
@@ -71,12 +74,18 @@ app.get('/waiters', async function (req, res) {
 
 app.get('/days', async function (req, res) {
     const selectedDay = await waiter.getDays();
+    //console.log(selectedDay);
+    
     const selectedWaiter = await waiter.getNames()
-    const display = await waiter.getTheShifts()
+    //console.log(selectedWaiter);
+    
+   // const display = await waiter.getTheShifts(shifts, names)
+    //console.log(display);
+    
     res.render('administrator',{
         selectedDay,
         selectedWaiter,
-        display
+        //display
     })
 })
 

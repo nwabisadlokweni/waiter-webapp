@@ -1,11 +1,11 @@
 <div class="row">
 
   <div class="header">
-         <div class="bhelekazi">
-            <h1><strong> Bhelekazi </strong></h1>
-            <img src="/images/images.png" alt="coffee">
-        </div>
+    <div class="bhelekazi">
+      <h1><strong> Bhelekazi </strong></h1>
+      <img src="/images/images.png" alt="coffee">
     </div>
+  </div>
 
   <h2>Hello there, welcome to Bhelekazi The COFFEE Shop</h2>
 
@@ -13,59 +13,60 @@
   <h3 class="green">enough</h3>
   <h3 class="orange">still need more</h3>
 
-<hr>
-<div class="clear">
-        <p class="clear"></p>{{messages.resetSucceded}}</p>
-    </div>
+  <hr>
 
-<br>
- <div class="resetSucceded"></div>
+  <div class="clear">
+    <p class="clear"></p>{{messages.resetSucceded}}</p>
+  </div>
 
- 
-<form action="/days" method="GET"></form>
+  <br>
+
+  <div class="resetSucceded"></div>
+
+  <form action="/days" method="GET"></form>
   <table>
-    <caption>Shifts Tables</caption>
-     
+    <caption><strong>Shifts Tables</strong></caption>
+
     <tr>
-     {{#each display}}
+      {{#each selectedDay}}
       <th>
-        {{this.selectedDay}}
+        {{this.days}}
       </th>
-   {{/each}}
+      {{/each}}
     </tr>
 
     <tr>
       {{#each selectedWaiter}}
-      <td> 
+      <td>
         {{this.names}}
-         </td>
-    {{/each}}
+      </td>
+      {{/each}}
     </tr>
   </table>
 
- <br>
+  <br>
 
   <div>
-        <a href="/">
-            <button type="submit" class="back">back</button>
-        </a>
-    </div>
+    <a href="/">
+      <button type="submit" class="back">back</button>
+    </a>
+  </div>
 
-<br>
+  <br>
 
-    <div>
-        <form action="/reset" method="GET">
-            <a href="/reset"></a>
-            <button type="submit" class="reset">Reset</button>
-        </form>
-    </div>
+  <div>
+    <form action="/reset" method="GET">
+      <a href="/reset"></a>
+      <button type="submit" class="reset">Reset</button>
+    </form>
+  </div>
 
 </div>
 
 <script>
-    setTimeout(function () {
-        //document.querySelector(".flash").innerHTML = ""
-        //document.querySelector(".confirm").innerHTML = "";
-        document.querySelector(".clear").innerHTML = ""
-    }, 3000);
+  setTimeout(function () {
+    //document.querySelector(".flash").innerHTML = ""
+    //document.querySelector(".confirm").innerHTML = "";
+    document.querySelector(".clear").innerHTML = ""
+  }, 3000);
 </script>

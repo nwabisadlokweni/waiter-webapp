@@ -1,3 +1,5 @@
+DROP table if exists weekdays, waiters, bhelekazi;
+
 --database name waiter_tests
 create table weekdays(
 id serial not null primary key,
@@ -15,14 +17,14 @@ create table waiters(
 id serial not null primary key,
 names text not null
 );
-insert into waiters(names) values ('Zola');
-insert into waiters(names) values ('Nwabisa');
+--insert into waiters(names) values ('Zola');
+--insert into waiters(names) values ('Nwabisa');
 
 create table bhelekazi(
 id serial not null primary key,
 waiters_id int not null,
-foreign key (waiters_id) references waiters(id),
 weekdays_id int not null,
+foreign key (waiters_id) references waiters(id),
 foreign key (weekdays_id) references weekdays(id)
 );
 
