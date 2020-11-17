@@ -60,13 +60,14 @@ app.post('/waiters/:username', async function (req, res) {
     const week = req.body.day;
     await waiter.addNames(username1)
     const both = await waiter.getTheShifts(week, username1 )
+    //req.flash('flash', `Hello ${username1}`);
     //console.log(week)
     res.render('waiters', {both})
 })
 
 app.get('/waiters', async function (req, res) {
     const username1 =  _.capitalize(req.params.username);
-
+   // req.flash('flash', `Hello ${username1}`);
     res.render('waiters', {
          username: username1
     })
