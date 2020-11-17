@@ -79,13 +79,13 @@ app.get('/days', async function (req, res) {
     const selectedWaiter = await waiter.getNames()
     //console.log(selectedWaiter);
     
-   // const display = await waiter.getTheShifts(shifts, names)
-    //console.log(display);
+    const display = await waiter.eachDay()
+    console.log(display);
     
     res.render('administrator',{
         selectedDay,
         selectedWaiter,
-        //display
+        display
     })
 })
 

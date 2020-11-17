@@ -28,17 +28,17 @@
     <caption><strong>Shifts Tables</strong></caption>
 
     <tr>
-      {{#each selectedDay}}
+      {{#each display}}
       <th>
-        {{this.days}}
+        {{day}}
       </th>
       {{/each}}
     </tr>
 
     <tr>
-      {{#each selectedWaiter}}
-      <td>
-        {{this.names}}
+      {{#each display}}
+      <td class="{{color}}">
+        {{this.Waiter}}
       </td>
       {{/each}}
     </tr>

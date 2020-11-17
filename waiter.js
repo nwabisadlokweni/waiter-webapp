@@ -65,47 +65,54 @@ module.exports = function waiterFactory(pool) {
         const arrayForShifts = [{
             id: 0,
             day: 'Monday',
-            Waiter: []
+            Waiter: [],
+            color: ''
         }, {
             id: 1,
             day: 'Tuesday',
-            Waiter: []
+            Waiter: [],
+            color: ''
         }, {
             id: 2,
             day: 'Wednesday',
-            Waiter: []
+            Waiter: [],
+            color: ''
         }, {
             id: 3,
             day: 'Thursday',
-            Waiter: []
+            Waiter: [],
+            color: ''
         }, {
             id: 4,
             day: 'Friday',
-            Waiter: []
+            Waiter: [],
+            color: ''
         }, {
             id: 5,
             day: 'Saturday',
-            Waiter: []
+            Waiter: [],
+            color: ''
         }, {
             id: 6,
             day: 'Sunday',
-            Waiter: []
+            Waiter: [],
+            color: ''
         }]
 
         if (selectedShift.length > 0) {
             for (let i = 0; i < selectedShift.length; i++) {
                 arrayForShifts.forEach(element => {
                     if (element.day === selectedShift[i].days) {
-                        element.Waiter.push(selectedShift[i].waiters)
+                        element.Waiter.push(selectedShift[i].names)
                     }
-                    if (element.Waiter.length === 2) {
-                        element.colour = "orange";
+                    if (element.Waiter.length <= 2) {
+                        element.color = "orange";
                     }
                     if (element.Waiter.length === 3) {
-                        element.colour = "green";
+                        element.color = "green";
                     }
-                    if (element.Waiter.length === 4) {
-                        element.colour = "red";
+                    if (element.Waiter.length > 3) {
+                        element.color = "red";
                     }
                 })
             }
@@ -114,9 +121,9 @@ module.exports = function waiterFactory(pool) {
     }
 
     async function reset() {
-        var clear = await pool.query('delete from bhelekazi');
+        var del = await pool.query('delete from bhelekazi');
         //var del = await pool.query('delete from waiters');
-        return clear;
+        return del;
     }
 
     return {

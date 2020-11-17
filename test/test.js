@@ -21,46 +21,46 @@ describe('The basic database web app', function () {
         await pool.query("delete from waiters;");
     });
 
-    // it('should be able to insert 1 waiter name on the database', async function () {
+    it('should be able to insert 1 waiter name on the database', async function () {
        
 
-    //     await waiter.addNames('nwabisa');
+        await waiter.addNames('nwabisa');
 
-    //     var names = await waiter.getNames()
-    //     assert.deepEqual([{ names: 'nwabisa' }], names);
-    // })
-
-    // it('should be able to insert multiple waiters names on the database', async function () {
-    //     let waiter = waiterFactory(pool);
-
-    //     await waiter.addNames('Nwabisa');
-    //     await waiter.addNames('Zola');
-    //     await waiter.addNames('Sino');
-    //     await waiter.addNames('Mandisa');
-    //     await waiter.addNames('Namhla');
-    //     await waiter.addNames('Chuma');
-
-    //     var names = await waiter.getNames()
-
-    //     assert.deepEqual([{ names: 'Nwabisa' },
-    //     { names: 'Zola' },
-    //     { names: 'Sino' },
-    //     { names: 'Mandisa' },
-    //     { names: 'Namhla' },
-    //     { names: 'Chuma' }], names);
-    // })
-
-
-
-
-    it('should be able to get shift information', async function () {
-
-        await waiter.addNames('Mike');
-
-        await waiter.getTheShifts()
-        await waiter.displayAdmin();
-
+        var names = await waiter.getNames()
+        assert.deepEqual([{ names: 'nwabisa' }], names);
     })
+
+    it('should be able to insert multiple waiters names on the database', async function () {
+       
+
+        await waiter.addNames('Nwabisa');
+        await waiter.addNames('Zola');
+        await waiter.addNames('Sino');
+        await waiter.addNames('Mandisa');
+        await waiter.addNames('Namhla');
+        await waiter.addNames('Chuma');
+
+        var names = await waiter.getNames()
+
+        assert.deepEqual([{ names: 'Nwabisa' },
+        { names: 'Zola' },
+        { names: 'Sino' },
+        { names: 'Mandisa' },
+        { names: 'Namhla' },
+        { names: 'Chuma' }], names);
+    })
+
+
+
+
+    // it('should be able to get shift information', async function () {
+
+    //     await waiter.addNames('Mike');
+
+    //     await waiter.getTheShifts()
+    //     await waiter.displayAdmin();
+
+    // })
 
 
     // it('should be abe to insert days that are selected on the database', async function () {
