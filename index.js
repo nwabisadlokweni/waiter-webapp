@@ -39,14 +39,14 @@ app.use(session({
 app.use(flash());
 
 app.get('/', function (req, res) {
-    
+
     res.render('index')
 })
 
 app.get('/waiters/:username', async function (req, res) {
     const username1 = _.capitalize(req.params.username);
-//    const names = await waiter.addNames()
-
+    //    const names = await waiter.addNames()
+// var d = await waiter.getDaysForEachPerson(username1)
     res.render('waiters', {
         username: username1
         //  message: names 
@@ -56,36 +56,52 @@ app.get('/waiters/:username', async function (req, res) {
 //adding the names to the db
 app.post('/waiters/:username', async function (req, res) {
     // const username = await waiter.getNames();
-    const username1 =  _.capitalize(req.params.username);
+    const username1 = _.capitalize(req.params.username);
     const week = req.body.day;
-    await waiter.addNames(username1)
-    const both = await waiter.getTheShifts(week, username1 )
-    //req.flash('flash', `Hello ${username1}`);
-    //console.log(week)
-    res.render('waiters', {both})
+    try {
+        if (week !== '') {
+            req.flash('success', `successful`);
+        }
+        // else if (isNaN(username1) === false) {
+        //     req.flash('error', username1 + " is not a name");
+        //  }
+         else {
+          // await waiter.addNames(username1)
+         }
+         await waiter.addNames(username1)
+        const both = await waiter.getTheShifts(week, username1)
+    
+        res.render('waiters', { both })
+    } catch (error) {
+
+    }
 })
 
 app.get('/waiters', async function (req, res) {
-    const username1 =  _.capitalize(req.params.username);
-   // req.flash('flash', `Hello ${username1}`);
+    const username1 = _.capitalize(req.params.username);
+
+
     res.render('waiters', {
-         username: username1
+        username: username1
     })
 })
 
 app.get('/days', async function (req, res) {
     const selectedDay = await waiter.getDays();
     //console.log(selectedDay);
-    
+
     const selectedWaiter = await waiter.getNames()
     //console.log(selectedWaiter);
-    
+
     const display = await waiter.eachDay()
-    console.log(display);
-    
-    res.render('administrator',{
+    const showWaiters = await waiter.displayAdmin()
+   // const showDays = await waiter.getArrays()
+    console.log(showWaiters);
+
+    res.render('administrator', {
         selectedDay,
         selectedWaiter,
+        showWaiters,
         display
     })
 })

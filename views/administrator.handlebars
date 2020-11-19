@@ -9,40 +9,51 @@
 
   <h2>Hello there, welcome to Bhelekazi The COFFEE Shop</h2>
 
-  <h3 class="red">over booked</h3>
   <h3 class="green">enough</h3>
+  <h3 class="red">over booked</h3>
   <h3 class="orange">still need more</h3>
 
   <hr>
 
-  <div class="clear">
+  {{!-- <div class="clear">
     <p class="clear"></p>{{messages.resetSucceded}}</p>
-  </div>
+  </div> --}}
 
   <br>
 
-  <div class="resetSucceded"></div>
+  <h4 class="resetSucceded">{{messages.resetSucceded}}</h4>
+  {{!-- <div class=""></div> --}}
 
-  <form action="/days" method="GET"></form>
-  <table>
-    <caption><strong>Shifts Tables</strong></caption>
+  <form action="/days" method="GET">
+    <table>
+      <thead>
+        <caption><strong>Shifts Tables</strong></caption>
+        <tr>
+          {{#each display}}
+          <th class="{{color}}">
+            {{this.day}}
+          </th>
+          {{/each}}
+        </tr>
 
-    <tr>
-      {{#each display}}
-      <th>
-        {{day}}
-      </th>
-      {{/each}}
-    </tr>
+      </thead>
 
-    <tr>
-      {{#each display}}
-      <td class="{{color}}">
-        {{this.Waiter}}
-      </td>
-      {{/each}}
-    </tr>
-  </table>
+      <tbody>
+        <tr>
+          {{#each display}}
+          <td>
+        {{#each Waiter}}
+            <a href="/waiters/{{this}}">
+              <li>{{this}}</li>
+            </a>
+           
+            {{/each}}
+          </td>
+          {{/each}}
+        </tr>
+      </tbody>
+    </table>
+  </form>
 
   <br>
 
@@ -56,17 +67,25 @@
 
   <div>
     <form action="/reset" method="GET">
-      <a href="/reset"></a>
-      <button type="submit" class="reset">Reset</button>
+      <a href="/administrator">
+        <button type="submit" class="reset">Reset</button>
+      </a>
     </form>
   </div>
 
+  {{!-- <div>
+    <form action="/reset" method="GET">
+      <a href="/reset"></a>
+      <button type="submit" class="reset">Reset</button>
+      
+    </form>
+  </div> --}}
 </div>
 
 <script>
   setTimeout(function () {
     //document.querySelector(".flash").innerHTML = ""
     //document.querySelector(".confirm").innerHTML = "";
-    document.querySelector(".clear").innerHTML = ""
+    document.querySelector(".resetSucceded").innerHTML = ""
   }, 3000);
 </script>

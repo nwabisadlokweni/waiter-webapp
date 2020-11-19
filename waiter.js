@@ -2,7 +2,7 @@ module.exports = function waiterFactory(pool) {
 
     async function getDays() {
         const theDays = await pool.query('select days from weekdays')
-        //console.log(theDays);
+        console.log(theDays.rows);
         return theDays.rows;
     }
 
@@ -33,23 +33,16 @@ module.exports = function waiterFactory(pool) {
         return theNames.rows;
     }
 
-    // async function getTheShifts() {
-
-    //     await pool.query('insert into bhelekazi (waiters_id, weekdays_id) values ($1, $2)')
-
-    // }
-
     async function getTheShifts(shifts, names) {
         const waiterName = await pool.query('select id from waiters where names = $1', [names])
         const waiterId = waiterName.rows[0].id
         // console.log(wa)
         for (let i = 0; i < shifts.length; i++) {
-          //  console.log(shifts[i]);
-            // const waiter = waiterId
+            //  console.log(shifts[i]);
             const daysId = await pool.query('select id from weekdays where days = $1', [shifts[i]])
             const weekdays = daysId.rows[0].id
             //    const daysId = await getDaysId(weekdays)
-           // console.log(weekdays)
+            // console.log(weekdays)
             await pool.query('insert into bhelekazi (waiters_id, weekdays_id) values ($1, $2)', [waiterId, weekdays])
             //  return getShifts.rows
         }
@@ -62,6 +55,9 @@ module.exports = function waiterFactory(pool) {
 
     async function eachDay() {
         let selectedShift = await displayAdmin();
+        var getDaysOnly = await getDays()
+        // console.log(selectedShift);
+
         const arrayForShifts = [{
             id: 0,
             day: 'Monday',
@@ -120,9 +116,26 @@ module.exports = function waiterFactory(pool) {
         return arrayForShifts;
     }
 
+    async function getDaysForEachPerson(waiterDays) {
+        // const theDays = await pool.query('select days from weekdays where days = $1', [waiterDays])
+        const all = await getDays();
+        var daysOnly = await pool.query('select days from bhelekazi JOIN waiters on bhelekazi.waiters_id = waiters.id JOIN weekdays on bhelekazi.weekdays_id = weekdays.id where names = $1', [waiterDays])
+        //console.log(daysOnly);
+        var rowDaysOnly = daysOnly.rows;
+        // console.log(all);
+        for (const allDays of all) {
+            console.log(allDays + 'days');
+            for (const dayForOne of rowDaysOnly) {
+                console.log(dayForOne + 'jnj');
+                if (allDays ) {
+
+                }
+            }
+        }
+    }
+
     async function reset() {
         var del = await pool.query('delete from bhelekazi');
-        //var del = await pool.query('delete from waiters');
         return del;
     }
 
@@ -130,10 +143,9 @@ module.exports = function waiterFactory(pool) {
         addNames,
         reset,
         getNames,
-        //getDaysId,
         getTheShifts,
-        //getWaitersId,
         displayAdmin,
+        getDaysForEachPerson,
         getDays,
         eachDay
     }

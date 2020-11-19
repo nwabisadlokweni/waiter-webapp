@@ -27,24 +27,37 @@ h1{
 	 transform: translate(-50%, -50%);
  }
 
+ h2{
+	 color:rgb(110, 13, 110);
+ }
+
 .header {
 	padding: 1em;
 	text-align: center;
 	font-size: 15px;
   }
   
-.flash {
+.message {
 	text-indent: 50px;
 	text-align: justify;
 	letter-spacing: 3px;
 	color : red;
 }
-
-.clear {
+li{
+	text-align: justify;
+}
+.resetSucceded {
 	text-indent: 50px;
 	text-align: justify;
 	letter-spacing: 3px;
 	color: orange;
+}
+
+.success {
+	text-indent: 50px;
+	text-align: center;
+	letter-spacing: 3px;
+	color: green;
 }
 
 table {

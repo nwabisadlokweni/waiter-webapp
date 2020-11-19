@@ -6,18 +6,29 @@
             <img src="/images/images.png" alt="coffee">
         </div>
     </div>
+    <br>
 
-    <h2>Select your working days</h2>
+    {{!-- <h2>Hello, {{username}} please select your working days</h2> --}}
 
-    <div class="message"></div>
+    {{!-- {{#if confirm}}
+    <div class="confirm">
+        <p class="confirm">{{confirm.success}}</p>
+    </div>
+    {{/if}} --}}
 
-    {{#if message}}
+    <h4 class="message">{{messages.error}}</h4>
+    <h4 class="success">{{messages.success}}</h4>
+
+    {{!-- 
+ {{#if message}}
     <div class="">{{message}}</div>
     {{else}}
     <div class="">
         <p class='flash'> {{messages.error}}</p>
     </div>
-    {{/if}}
+    {{/if}} --}}
+
+
 
     <form action="/waiters/{{username}}" method="POST">
         <input type="checkbox" id="day1" class="check" name="day" value="Monday"> Monday
@@ -28,22 +39,24 @@
         <input type="checkbox" id="day6" class="check" name="day" value="Saturday"> Saturday
         <input type="checkbox" id="day7" class="check" name="day" value="Sunday"> Sunday
         <br>
+        <br>
         <button class="submit" type="submit">Submit</button>
         {{!-- <input type="submit" value="Submit"> --}}
     </form>
+
     <br>
-<div>
+
+    <div>
         <a href="/">
             <button type="submit" class="back">back</button>
         </a>
     </div>
-   
+
 </div>
 
 <script>
     setTimeout(function () {
-        document.querySelector(".flash").innerHTML = ""
-        //document.querySelector(".confirm").innerHTML = "";
-        //document.querySelector(".clear").innerHTML = ""
+        document.querySelector(".success").innerHTML = "";
+        document.querySelector(".error").innerHTML = ""
     }, 3000);
 </script>
