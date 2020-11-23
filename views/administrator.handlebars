@@ -15,14 +15,7 @@
 
   <hr>
 
-  {{!-- <div class="clear">
-    <p class="clear"></p>{{messages.resetSucceded}}</p>
-  </div> --}}
-
-  <br>
-
-  <h4 class="resetSucceded">{{messages.resetSucceded}}</h4>
-  {{!-- <div class=""></div> --}}
+  <h3 class="resetSucceded">{{messages.resetSucceded}}</h3>
 
   <form action="/days" method="GET">
     <table>
@@ -35,18 +28,16 @@
           </th>
           {{/each}}
         </tr>
-
       </thead>
 
       <tbody>
         <tr>
           {{#each display}}
           <td>
-        {{#each Waiter}}
+            {{#each Waiter}}
             <a href="/waiters/{{this}}">
               <li>{{this}}</li>
             </a>
-           
             {{/each}}
           </td>
           {{/each}}
@@ -73,19 +64,10 @@
     </form>
   </div>
 
-  {{!-- <div>
-    <form action="/reset" method="GET">
-      <a href="/reset"></a>
-      <button type="submit" class="reset">Reset</button>
-      
-    </form>
-  </div> --}}
 </div>
 
 <script>
   setTimeout(function () {
-    //document.querySelector(".flash").innerHTML = ""
-    //document.querySelector(".confirm").innerHTML = "";
     document.querySelector(".resetSucceded").innerHTML = ""
   }, 3000);
 </script>

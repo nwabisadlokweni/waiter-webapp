@@ -47,6 +47,17 @@ describe('The basic database web app', function () {
         { names: 'Chuma' }], names);
     })
 
+    // it('should be able to display the days a waiter is working on', async function () {
+
+    //     await waiter.addNames('Chuma');
+
+    //     var names = await waiter.displayAdmin('Monday')
+    //     var names = await waiter.displayAdmin('Tuesday')
+
+
+    //     assert.deepEqual( [{names: 'Chuma'}], names);
+    // });
+
     // it('should be able to reset the shifts from the database', async function () {
 
     //     await waiter.eachDay("nwabisa");

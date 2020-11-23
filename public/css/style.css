@@ -8,7 +8,7 @@
 	border: 3px solid rgb(110, 13, 110);
   }
 
-  .image{
+ .image{
 	width: 30%;
 	text-align: right;
   }
@@ -27,8 +27,8 @@ h1{
 	 transform: translate(-50%, -50%);
  }
 
- h2{
-	 color:rgb(110, 13, 110);
+h2{
+	 color:rgb(44, 14, 44);
  }
 
 .header {
@@ -43,9 +43,11 @@ h1{
 	letter-spacing: 3px;
 	color : red;
 }
+
 li{
 	text-align: justify;
 }
+
 .resetSucceded {
 	text-indent: 50px;
 	text-align: justify;

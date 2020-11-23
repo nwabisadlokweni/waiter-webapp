@@ -9,7 +9,6 @@ const pg = require("pg");
 const Pool = pg.Pool;
 const _ = require("lodash");
 
-
 const app = express();
 
 // which db connection to use
@@ -45,19 +44,23 @@ app.get('/', function (req, res) {
 
 app.get('/waiters/:username', async function (req, res) {
     const username1 = _.capitalize(req.params.username);
-    //    const names = await waiter.addNames()
-// var d = await waiter.getDaysForEachPerson(username1)
+    const allDays = await waiter.getDays()
+    const checked = await waiter.getDaysForEachPerson(username1)
+    console.log(checked);
+
     res.render('waiters', {
-        username: username1
-        //  message: names 
+        username: username1,
+        allDays: checked,
+        checked
     })
 })
 
 //adding the names to the db
 app.post('/waiters/:username', async function (req, res) {
-    // const username = await waiter.getNames();
     const username1 = _.capitalize(req.params.username);
     const week = req.body.day;
+    const showWaiters = await waiter.displayAdmin()
+
     try {
         if (week !== '') {
             req.flash('success', `successful`);
@@ -65,14 +68,20 @@ app.post('/waiters/:username', async function (req, res) {
         // else if (isNaN(username1) === false) {
         //     req.flash('error', username1 + " is not a name");
         //  }
-         else {
-          // await waiter.addNames(username1)
-         }
-         await waiter.addNames(username1)
+        await waiter.addNames(username1)
         const both = await waiter.getTheShifts(week, username1)
-    
-        res.render('waiters', { both })
-    } catch (error) {
+        const allDays = await waiter.getDays()
+        const checked = await waiter.getDaysForEachPerson(username1)
+
+        res.render('waiters', {
+            username: username1,
+            both,
+            allDays: checked,
+            checked,
+            showWaiters
+        })
+    }
+    catch (error) {
 
     }
 })
@@ -80,27 +89,15 @@ app.post('/waiters/:username', async function (req, res) {
 app.get('/waiters', async function (req, res) {
     const username1 = _.capitalize(req.params.username);
 
-
     res.render('waiters', {
         username: username1
     })
 })
 
 app.get('/days', async function (req, res) {
-    const selectedDay = await waiter.getDays();
-    //console.log(selectedDay);
-
-    const selectedWaiter = await waiter.getNames()
-    //console.log(selectedWaiter);
-
     const display = await waiter.eachDay()
     const showWaiters = await waiter.displayAdmin()
-   // const showDays = await waiter.getArrays()
-    console.log(showWaiters);
-
     res.render('administrator', {
-        selectedDay,
-        selectedWaiter,
         showWaiters,
         display
     })

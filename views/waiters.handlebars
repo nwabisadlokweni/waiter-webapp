@@ -6,42 +6,24 @@
             <img src="/images/images.png" alt="coffee">
         </div>
     </div>
-    <br>
 
-    {{!-- <h2>Hello, {{username}} please select your working days</h2> --}}
+    <span>{{this.names}}</span>
+    <h2>{{username}}</h2>
 
-    {{!-- {{#if confirm}}
-    <div class="confirm">
-        <p class="confirm">{{confirm.success}}</p>
-    </div>
-    {{/if}} --}}
+    <h2>please put your name on the url and select your working days</h2>
 
-    <h4 class="message">{{messages.error}}</h4>
-    <h4 class="success">{{messages.success}}</h4>
-
-    {{!-- 
- {{#if message}}
-    <div class="">{{message}}</div>
-    {{else}}
-    <div class="">
-        <p class='flash'> {{messages.error}}</p>
-    </div>
-    {{/if}} --}}
-
-
+    
+    <h3 class="message">{{messages.error}}</h3>
+    <h3 class="success">{{messages.success}}</h3>
 
     <form action="/waiters/{{username}}" method="POST">
-        <input type="checkbox" id="day1" class="check" name="day" value="Monday"> Monday
-        <input type="checkbox" id="day2" class="check" name="day" value="Tuesday"> Tuesday
-        <input type="checkbox" id="day3" class="check" name="day" value="Wednesday"> Wednesday
-        <input type="checkbox" id="day4" class="check" name="day" value="Thursday"> Thursday
-        <input type="checkbox" id="day5" class="check" name="day" value="Friday"> Friday
-        <input type="checkbox" id="day6" class="check" name="day" value="Saturday"> Saturday
-        <input type="checkbox" id="day7" class="check" name="day" value="Sunday"> Sunday
+        {{#each allDays}}
+        <input type="checkbox" id="day1" {{checked}} class="check" name="day" value="{{this.days}}">
+        <span>{{this.days}}</span>
+        {{/each}}
         <br>
         <br>
         <button class="submit" type="submit">Submit</button>
-        {{!-- <input type="submit" value="Submit"> --}}
     </form>
 
     <br>
