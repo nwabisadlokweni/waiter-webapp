@@ -4,10 +4,9 @@ const bodyParser = require('body-parser');
 const flash = require('express-flash');
 const session = require('express-session');
 const waiterFactory = require('./waiter');
-//const routeFactory = require('./waiter-routes')
+const routeFactory = require('./waiter-routes')
 const pg = require("pg");
 const Pool = pg.Pool;
-const _ = require("lodash");
 
 const app = express();
 
@@ -19,7 +18,7 @@ const pool = new Pool({
 });
 
 const waiter = waiterFactory(pool);
-//const routesInstance = routeFactory(registration)
+const routesInstance = routeFactory(waiter)
 
 app.engine('handlebars', exphbs({ layoutsDir: './views/layouts' }));
 app.set('view engine', 'handlebars');
@@ -37,77 +36,17 @@ app.use(session({
 // initialise the flash middleware
 app.use(flash());
 
-app.get('/', function (req, res) {
+app.get('/', routesInstance.index)
 
-    res.render('index')
-})
+app.get('/waiters', routesInstance.step)
 
-app.get('/waiters/:username', async function (req, res) {
-    const username1 = _.capitalize(req.params.username);
-    const allDays = await waiter.getDays()
-    const checked = await waiter.getDaysForEachPerson(username1)
-    console.log(checked);
+app.get('/waiters/:username', routesInstance.getWaiters)
 
-    res.render('waiters', {
-        username: username1,
-        allDays: checked,
-        checked
-    })
-})
+app.post('/waiters/:username', routesInstance.inserting)
 
-//adding the names to the db
-app.post('/waiters/:username', async function (req, res) {
-    const username1 = _.capitalize(req.params.username);
-    const week = req.body.day;
-    const showWaiters = await waiter.displayAdmin()
+app.get('/days', routesInstance.displaying)
 
-    try {
-        if (week !== '') {
-            req.flash('success', `successful`);
-        }
-        // else if (isNaN(username1) === false) {
-        //     req.flash('error', username1 + " is not a name");
-        //  }
-        await waiter.addNames(username1)
-        const both = await waiter.getTheShifts(week, username1)
-        const allDays = await waiter.getDays()
-        const checked = await waiter.getDaysForEachPerson(username1)
-
-        res.render('waiters', {
-            username: username1,
-            both,
-            allDays: checked,
-            checked,
-            showWaiters
-        })
-    }
-    catch (error) {
-
-    }
-})
-
-app.get('/waiters', async function (req, res) {
-    const username1 = _.capitalize(req.params.username);
-
-    res.render('waiters', {
-        username: username1
-    })
-})
-
-app.get('/days', async function (req, res) {
-    const display = await waiter.eachDay()
-    const showWaiters = await waiter.displayAdmin()
-    res.render('administrator', {
-        showWaiters,
-        display
-    })
-})
-
-app.get('/reset', async function (req, res) {
-    req.flash('resetSucceded', `You have successfully cleared your shift's table`);
-    await waiter.reset()
-    res.render('administrator')
-})
+app.get('/reset', routesInstance.reseting)
 
 const PORT = process.env.PORT || 2030;
 

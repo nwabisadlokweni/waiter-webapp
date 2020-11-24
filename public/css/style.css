@@ -25,10 +25,15 @@ h1{
 	 top: 4%;
 	 left: 50%;
 	 transform: translate(-50%, -50%);
+	 
  }
 
 h2{
 	 color:rgb(44, 14, 44);
+ }
+
+ p{
+	 color: grey;
  }
 
 .header {
