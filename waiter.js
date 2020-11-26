@@ -118,7 +118,7 @@ module.exports = function waiterFactory(pool) {
     }
 
     async function reset() {
-        var del = await pool.query('delete from bhelekazi; delete from waiters');
+        var del = await pool.query('delete from bhelekazi');
         return del.rows;
     }
 
