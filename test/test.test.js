@@ -47,25 +47,51 @@ describe('The basic database web app', function () {
         { names: 'Chuma' }], names);
     })
 
+    it('should show all the days', async function () {
+        await waiter.getDays();
+
+        assert.deepEqual(await waiter.getDays(),
+            [{ days: "Monday" },
+            { days: "Tuesday" },
+            { days: "Wednesday" },
+            { days: "Thursday" },
+            { days: "Friday" },
+            { days: "Saturday" },
+            { days: "Sunday" }])
+
+    })
+
+    it('should be able to reset the shifts from the database', async function () {
+
+        assert.deepEqual(await waiter.reset());
+    });
+
+
     // it('should be able to display the days a waiter is working on', async function () {
 
-    //     await waiter.addNames('Chuma');
+    //     // await waiter.addNames('Chuma');
 
-    //     var names = await waiter.displayAdmin('Monday')
-    //     var names = await waiter.displayAdmin('Tuesday')
+    //     // var names = await waiter.displayAdmin('Monday')
+    //     // var names = await waiter.displayAdmin('Tuesday')
+    //     // var names = await waiter.displayAdmin('Friday')
 
+    //     // assert.deepEqual([{ names: 'Chuma' }], names);
 
-    //     assert.deepEqual( [{names: 'Chuma'}], names);
+    //    await waiter.getDays();
+    //     await waiter.addNames("njunju");
+    //     //await waiter.addNames("namhla");
+
+    //     let shifts = {
+    //         names: "njunju",
+    //         days: ["Monday", "Tuesday"]
+    //     }
+    //     let select_shifts = await waiter.getTheShifts(shifts);
+    //     assert.deepEqual(select_shifts, true);
+       
     // });
+        
 
-    // it('should be able to reset the shifts from the database', async function () {
 
-    //     await waiter.eachDay("nwabisa");
-
-    //     var names = await waiter.reset()
-
-    //     assert.deepEqual({}, names);
-    // });
 
     after(function () {
         pool.end();
