@@ -63,7 +63,7 @@ describe('The basic database web app', function () {
 
     it('should be able to reset the shifts from the database', async function () {
 
-        assert.deepEqual(await waiter.reset());
+        assert.deepEqual(await waiter.reset(), []);
     });
 
 
@@ -85,8 +85,8 @@ describe('The basic database web app', function () {
     //         names: "njunju",
     //         days: ["Monday", "Tuesday"]
     //     }
-    //     let select_shifts = await waiter.getTheShifts(shifts);
-    //     assert.deepEqual(select_shifts, true);
+    //     let select_shifts = await waiter.getDaysForEachPerson(shifts);
+    //     assert.deepEqual(select_shifts, (true)z)
        
     // });
         
