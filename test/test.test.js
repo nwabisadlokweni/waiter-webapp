@@ -63,7 +63,7 @@ describe('The basic database web app', function () {
 
     it('should be able to reset the shifts from the database', async function () {
 
-        assert.deepEqual(await waiter.reset(), []);
+        assert.equal(await waiter.reset());
     });
 
 
