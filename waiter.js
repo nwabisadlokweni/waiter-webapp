@@ -2,6 +2,8 @@ module.exports = function waiterFactory(pool) {
 
     async function getDays() {
         const theDays = await pool.query('select days from weekdays')
+        
+        
         return theDays.rows;
     }
 
@@ -15,9 +17,11 @@ module.exports = function waiterFactory(pool) {
         return theNames.rows;
     }
 
-    async function getTheShifts(shifts, names) {
+    async function getTheShifts(names,shifts) {
         const waiterName = await pool.query('select id from waiters where names = $1', [names])
         const waiterId = waiterName.rows[0].id
+        // console.log(shifts);
+        
         await pool.query('delete from bhelekazi where waiters_id = $1', [waiterId]);
         for (let i = 0; i < shifts.length; i++) {
             const daysId = await pool.query('select id from weekdays where days = $1', [shifts[i]])
@@ -70,6 +74,7 @@ module.exports = function waiterFactory(pool) {
             color: ''
         }]
 
+        
         if (selectedShift.length > 0) {
             for (let i = 0; i < selectedShift.length; i++) {
                 arrayForShifts.forEach(element => {
@@ -88,6 +93,7 @@ module.exports = function waiterFactory(pool) {
                 })
             }
         }
+        console.log(arrayForShifts)
         return arrayForShifts;
     }
 

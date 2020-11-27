@@ -17,8 +17,6 @@ create table waiters(
 id serial not null primary key,
 names text not null
 );
---insert into waiters(names) values ('Zola');
---insert into waiters(names) values ('Nwabisa');
 
 create table bhelekazi(
 id serial not null primary key,

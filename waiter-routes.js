@@ -27,14 +27,14 @@ module.exports = function waiterRoutes(waiter) {
     async function inserting(req, res) {
         const username1 = _.capitalize(req.params.username);
         const week = req.body.day;
-        const showWaiters = await waiter.displayAdmin()
-
+      
         try {
             if (week !== '') {
                 req.flash('success', `successful`);
             }
+            const showWaiters = await waiter.displayAdmin()
             await waiter.addNames(username1)
-            const both = await waiter.getTheShifts(week, username1)
+            const both = await waiter.getTheShifts(username1,week)
             const allDays = await waiter.getDays()
             const checked = await waiter.getDaysForEachPerson(username1)
 
@@ -62,12 +62,12 @@ module.exports = function waiterRoutes(waiter) {
         })
     }
 
-    async function reseting(req, res) { 
-        
+    async function reseting(req, res) {
+
         req.flash('resetSucceded', `You have successfully cleared your shift's table`);
         await waiter.reset()
         const display = await waiter.eachDay()
-        
+
         res.render('administrator', {
             display
         })

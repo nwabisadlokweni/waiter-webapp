@@ -17,8 +17,10 @@ describe('The basic database web app', function () {
 
     beforeEach(async function () {
         // clean the tables before each test run
-        await pool.query("delete from bhelekazi;");
-        await pool.query("delete from waiters;");
+        await pool.query("drop table bhelekazi;");
+        await pool.query("drop table waiters;");
+        await pool.query("create table waiters(id serial not null primary key,names text not null)")
+        await pool.query("create table bhelekazi( id serial not null primary key,waiters_id int not null,weekdays_id int not null,foreign key (waiters_id) references waiters(id),foreign key (weekdays_id) references weekdays(id))")
     });
 
     it('should be able to insert 1 waiter name on the database', async function () {
@@ -62,36 +64,9 @@ describe('The basic database web app', function () {
     })
 
     it('should be able to reset the shifts from the database', async function () {
-        
-        assert.deepEqual(await waiter.reset(),[]);
+
+        assert.deepEqual(await waiter.reset(), []);
     });
-
-
-    // it('should be able to display the days a waiter is working on', async function () {
-
-    //     // await waiter.addNames('Chuma');
-
-    //     // var names = await waiter.displayAdmin('Monday')
-    //     // var names = await waiter.displayAdmin('Tuesday')
-    //     // var names = await waiter.displayAdmin('Friday')
-
-    //     // assert.deepEqual([{ names: 'Chuma' }], names);
-
-    //    await waiter.getDays();
-    //     await waiter.addNames("njunju");
-    //     //await waiter.addNames("namhla");
-
-    //     let shifts = {
-    //         names: "njunju",
-    //         days: ["Monday", "Tuesday"]
-    //     }
-    //     let select_shifts = await waiter.getDaysForEachPerson(shifts);
-    //     assert.deepEqual(select_shifts, (true)z)
-       
-    // });
-        
-
-
 
     after(function () {
         pool.end();
