@@ -68,6 +68,45 @@ describe('The basic database web app', function () {
         assert.deepEqual(await waiter.reset(), []);
     });
 
+
+    it('should be able to add a waiter and selected days', async function () {
+        await waiter.addNames('Luniko')
+        await waiter.getTheShifts('Luniko', ['Sunday', 'Friday', 'Saturday'])
+        const shifts = await waiter.getDaysForEachPerson('Luniko')
+
+        assert.deepEqual([{ days: 'Monday', checked: '' },
+        { days: 'Tuesday', checked: '' },
+        { days: 'Wednesday', checked: '' },
+        { days: 'Thursday', checked: '' },
+        { days: 'Friday', checked: 'checked' },
+        { days: 'Saturday', checked: 'checked' },
+        { days: 'Sunday', checked: 'checked' }], shifts)
+    });
+
+    it('should be able to add a waiter and selected days and display the color', async function () {
+        await waiter.addNames('Luniko')
+        await waiter.addNames('Keke')
+        await waiter.addNames('Sino')
+       
+        await waiter.getTheShifts('Luniko', ['Sunday', 'Friday', 'Saturday'])
+        await waiter.getTheShifts('Keke', ['Sunday', 'Friday', 'Saturday'])
+        await waiter.getTheShifts('Sino', ['Sunday', 'Friday', 'Saturday'])
+
+        const shifts = await waiter.eachDay()
+
+        assert.deepEqual([{ id: 0, day: 'Monday', Waiter: [], color: 'orange' },
+            { id: 1, day: 'Tuesday', Waiter: [], color: 'orange' },
+            { id: 2, day: 'Wednesday', Waiter: [], color: 'orange' },
+            { id: 3, day: 'Thursday', Waiter: [], color: 'orange' },
+            { id: 4, day: 'Friday', Waiter: ['Luniko','Keke', 'Sino'], color: 'green' },
+            { id: 5, day: 'Saturday', Waiter: ['Luniko','Keke', 'Sino'], color: 'green' },
+            { id: 6, day: 'Sunday', Waiter: ['Luniko','Keke', 'Sino'], color: 'green' }], shifts )
+
+        });
+
+    // it('should be able to show waiter id', async function(){
+
+    // })
     after(function () {
         pool.end();
     })
