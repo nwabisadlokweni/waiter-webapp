@@ -83,7 +83,7 @@ describe('The basic database web app', function () {
         { days: 'Sunday', checked: 'checked' }], shifts)
     });
 
-    it('should be able to add a waiter and selected days and display the color', async function () {
+    it('should be able to add waiters and their selected days and display their color', async function () {
         await waiter.addNames('Luniko')
         await waiter.addNames('Keke')
         await waiter.addNames('Sino')
